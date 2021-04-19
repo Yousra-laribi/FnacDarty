@@ -26,7 +26,11 @@ namespace FnacDarty.Tests
             int number = 0;
             for (int i = 0; i < value.Length; i++)
             {
-                if (i + 1 < value.Length && _values[char.ToUpper(value[i])] < _values[char.ToUpper(value[i + 1])])
+                if (!_values.ContainsKey(char.ToUpper(value[i]))) return null;
+                if (i + 1 < value.Length && 
+                    _values[char.ToUpper(value[i])] < _values[char.ToUpper(value[i + 1])] &&
+                    !(char.ToUpper(value[i + 1]) == 'I' && (char.ToUpper(value[i+1]) == 'C' || char.ToUpper(value[i]) == 'L'))
+                    )
                 {
                     number -= _values[char.ToUpper(value[i])];
                 }

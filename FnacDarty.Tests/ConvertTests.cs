@@ -45,12 +45,17 @@ namespace FnacDarty.Tests
         [InlineData("iii", 3)]
         [InlineData("viii", 8)]
         [InlineData("iv", 4)]
+        [InlineData("cm", 900)]
+        [InlineData("xlix", 49)]
+        [InlineData("xcix", 99)]
+        [InlineData("mxxx", 1030)]
+        [InlineData("xxxm", 970)]
         public void Should_Roman_To_Arabic_Returns_Correct_Value(string roman, int arabic)
         {
             var service = new Converter();
             var actual = service.RomanToArabic(roman);
 
-            arabic.Should().Equals(actual);
+            arabic.Should().Be(actual);
 
         }
     }

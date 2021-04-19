@@ -6,11 +6,15 @@ namespace FnacDarty.Display
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter roman value");
-            var romanValue = Console.ReadLine();
-            Tests.Converter converter = new Tests.Converter();
-            var arabicValue = converter.RomanToArabic(romanValue);
-            Console.WriteLine($"{romanValue} => {arabicValue}");
+            while (true)
+            {
+                Console.WriteLine("Please enter roman value");
+                var romanValue = Console.ReadLine();
+                Tests.Converter converter = new Tests.Converter();
+                var arabicValue = converter.RomanToArabic(romanValue);
+                var correspondingMsg = arabicValue.HasValue ? arabicValue.Value.ToString() : "Conversion failed";
+                Console.WriteLine($"{romanValue} => {correspondingMsg}");
+            }
         }
     }
 }
