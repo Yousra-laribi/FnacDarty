@@ -23,8 +23,8 @@ namespace FnacDarty.Tests
         public void Should_Roman_To_Arabic_Returns_Unitary_Value()
         {
             var service = new Converter();
-            var actual = service.RomanToArabic("I");
-            var expected = 1;
+            var actual = service.RomanToArabic("L");
+            var expected = 50;
 
             actual.Should().Equals(expected);
 
@@ -38,6 +38,19 @@ namespace FnacDarty.Tests
             var expected = 1;
 
             actual.Should().Equals(expected);
+
+        }
+
+        [Theory]
+        [InlineData("iii", 3)]
+        [InlineData("viii", 8)]
+        [InlineData("iv", 4)]
+        public void Should_Roman_To_Arabic_Returns_Correct_Value(string roman, int arabic)
+        {
+            var service = new Converter();
+            var actual = service.RomanToArabic(roman);
+
+            arabic.Should().Equals(actual);
 
         }
     }

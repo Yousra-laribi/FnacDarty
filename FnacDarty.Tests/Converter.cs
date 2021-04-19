@@ -6,10 +6,15 @@ namespace FnacDarty.Tests
 {
     public class Converter : IConverter
     {
-        private readonly Dictionary<string, int> _unitaryValues = new Dictionary<string, int>()
+        private readonly Dictionary<char, int> _values = new Dictionary<char, int>()
         {
-            { "I", 1 },
-            { "V", 5 }
+            { 'I', 1 },
+            { 'V', 5 },
+            { 'X', 10 },
+            { 'L', 50 },
+            { 'C', 100 },
+            { 'D', 500 },
+            { 'M', 1000 },
         };
         public int? RomanToArabic(string? value)
         {
@@ -18,12 +23,19 @@ namespace FnacDarty.Tests
                 return null;
             }
 
-            if(value.Length == 1)
+            int number = 0;
+            for (int i = 0; i < value.Length; i++)
             {
-                return _unitaryValues[value.ToUpper()];
+                if (i + 1 < value.Length && _values[char.ToUpper(value[i])] < _values[char.ToUpper(value[i + 1])])
+                {
+                    number -= _values[char.ToUpper(value[i])];
+                }
+                else
+                {
+                    number += _values[char.ToUpper(value[i])];
+                }
             }
-
-            else return 0;
+            return number;
         }
     }
 }
